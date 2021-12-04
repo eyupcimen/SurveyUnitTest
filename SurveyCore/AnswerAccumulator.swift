@@ -34,11 +34,10 @@ class AnswerAccumulator {
         
         var sum: Int = 0
         for entry: WeightedEntry in entries {
-            for candidateProblem in entry.problems {
-                if problem == candidateProblem {
-                    sum += entry.weight
-                }
-            }
+            
+            if entry.problems.contains(problem) {
+                sum += entry.weight
+            } 
         }
         return sum
     }

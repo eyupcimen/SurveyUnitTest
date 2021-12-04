@@ -24,19 +24,19 @@ class AnswerAccumulatorTests: XCTestCase {
     }
 
 
-    func test_oneEntry() throws {
-        let entry = WeightedEntry(weight: 8, problems: ["P1"], desires: [], killerFeatures: [])
-        sut.accumulate(entry:entry)
-        let score: Int = sut.scoreProblem(problem: "P1")
-        XCTAssertEqual(score, 8)
-    }
-
-    func test_oneEntry_withDifferentWeight() throws {
-        let entry = WeightedEntry(weight: 5, problems: ["P1"], desires: [], killerFeatures: [])
-        sut.accumulate(entry:entry)
-        let score:Int = sut.scoreProblem(problem: "P1")
-        XCTAssertEqual(score, 5)
-    }
+//    func test_oneEntry() throws {
+//        let entry = WeightedEntry(weight: 8, problems: ["P1"], desires: [], killerFeatures: [])
+//        sut.accumulate(entry:entry)
+//        let score: Int = sut.scoreProblem(problem: "P1")
+//        XCTAssertEqual(score, 8)
+//    }
+//
+//    func test_oneEntry_withDifferentWeight() throws {
+//        let entry = WeightedEntry(weight: 5, problems: ["P1"], desires: [], killerFeatures: [])
+//        sut.accumulate(entry:entry)
+//        let score:Int = sut.scoreProblem(problem: "P1")
+//        XCTAssertEqual(score, 5)
+//    }
     
     func test_oneEntry_withDifferentProblem() throws {
         let entry = WeightedEntry(weight: 5, problems: ["P1"], desires: [], killerFeatures: [])
@@ -56,6 +56,19 @@ class AnswerAccumulatorTests: XCTestCase {
         sut.accumulate(entry: entry2)
         
         let score: Int = sut.scoreProblem(problem: "P1")
+        
+        XCTAssertEqual(score, 8 + 5)
+    }
+    
+    func test_twoEntries_withMultipleProblems() throws {
+        
+        let entry1 = WeightedEntry(weight: 8, problems: ["P1","P2"], desires: [], killerFeatures: [])
+        let entry2 = WeightedEntry(weight: 5, problems: ["P2","P3"], desires: [], killerFeatures: [])
+        
+        sut.accumulate(entry: entry1)
+        sut.accumulate(entry: entry2)
+        
+        let score: Int = sut.scoreProblem(problem: "P2")
         
         XCTAssertEqual(score, 8 + 5)
     }
