@@ -31,14 +31,12 @@ class AnswerAccumulator {
     }
     
     public func scoreProblem(problem: String) -> Int {
-        entries.reduce(<#T##initialResult: Result##Result#>, <#T##nextPartialResult: (Result, WeightedEntry) throws -> Result##(Result, WeightedEntry) throws -> Result#>)
-        var sum: Int = 0
-        for entry: WeightedEntry in entries {
-            
+        entries.reduce(0) { result , entry -> Int in
             if entry.problems.contains(problem) {
-                sum += entry.weight
-            } 
+                return result + entry.weight
+            } else {
+                return result
+            }
         }
-        return sum
     }
 }
