@@ -31,12 +31,10 @@ class AnswerAccumulator {
     }
     
     public func scoreProblem(problem: String) -> Int {
-        entries.reduce(0) { result , entry -> Int in
-            if entry.problems.contains(problem) {
-                return result + entry.weight
-            } else {
-                return result
+        entries
+            .filter{$0.problems.contains(problem)}
+            .reduce(0) { result , entry -> Int in
+                result + entry.weight
             }
-        }
     }
 }
