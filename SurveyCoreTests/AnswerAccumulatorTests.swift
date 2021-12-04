@@ -58,7 +58,7 @@ class AnswerAccumulatorTests: XCTestCase {
 //        XCTAssertEqual(score, 8 + 5)
 //    }
     
-    func test_twoEntries_withMultipleProblems() throws {
+    func test_scoreMultipleProblems() throws {
         
         let entry1 = WeightedEntry(weight: 8, problems: ["P1","P2"], desires: [], killerFeatures: [])
         let entry2 = WeightedEntry(weight: 5, problems: ["P2","P3"], desires: [], killerFeatures: [])
