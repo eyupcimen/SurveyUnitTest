@@ -31,7 +31,7 @@ class AnswerAccumulator {
     }
     
     public func scoreProblem(problem: String) -> Int {
-        
+        entries.reduce(<#T##initialResult: Result##Result#>, <#T##nextPartialResult: (Result, WeightedEntry) throws -> Result##(Result, WeightedEntry) throws -> Result#>)
         var sum: Int = 0
         for entry: WeightedEntry in entries {
             
