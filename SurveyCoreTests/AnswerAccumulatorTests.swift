@@ -66,7 +66,7 @@ class AnswerAccumulatorTests: XCTestCase {
         sut.accumulate(entry: entry1)
         sut.accumulate(entry: entry2)
         
-        let score: Int = sut.scoreDesire(problem: "D2")
+        let score: Int = sut.scoreDesire(desire: "D2")
         
         XCTAssertEqual(score, 8 + 5)
     }

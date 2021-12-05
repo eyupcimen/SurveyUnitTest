@@ -24,7 +24,6 @@ struct WeightedEntry {
         let column = commaSeparatedEntry.split(separator: ",", omittingEmptySubsequences: false)
         weight = WeightedEntry.extractWeight(column: column)
         problems = WeightedEntry.extractKeywords(column: column, range: 3 ... 6)
-        
         desires = WeightedEntry.extractKeywords(column: column, range: 8 ... 11)
         killerFeatures = WeightedEntry.extractKeywords(column: column, range: 13 ... 15)
     }
@@ -53,6 +52,14 @@ class AnswerAccumulator {
     public func scoreProblem(problem: String) -> Int {
         entries
             .filter{$0.problems.contains(problem)}
+            .reduce(0) { result , entry -> Int in
+                result + entry.weight
+            }
+    }
+    
+    public func scoreDesire(desire: String) -> Int {
+        entries
+            .filter{$0.desires.contains(desire)}
             .reduce(0) { result , entry -> Int in
                 result + entry.weight
             }
