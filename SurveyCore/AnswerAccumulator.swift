@@ -64,4 +64,13 @@ class AnswerAccumulator {
                 result + entry.weight
             }
     }
+    
+    public func scoreKillerFeature(killerFeature: String) -> Int {
+        entries
+            .filter{$0.killerFeatures.contains(killerFeature)}
+            .reduce(0) { result , entry -> Int in
+                result + entry.weight
+            }
+    }
+    
 }

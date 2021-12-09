@@ -70,5 +70,18 @@ class AnswerAccumulatorTests: XCTestCase {
         
         XCTAssertEqual(score, 8 + 5)
     }
+    
+    func test_scoreMultipleKillerFeatures() throws {
+        
+        let entry1 = WeightedEntry(weight: 8, problems: [], desires: [], killerFeatures: ["K1","K2"])
+        let entry2 = WeightedEntry(weight: 5, problems: [], desires: [], killerFeatures: ["K2","K3"])
+        
+        sut.accumulate(entry: entry1)
+        sut.accumulate(entry: entry2)
+        
+        let score: Int = sut.scoreKillerFeature(killerFeature: "K2")
+        
+        XCTAssertEqual(score, 8 + 5)
+    }
 
 }
