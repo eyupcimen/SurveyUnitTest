@@ -58,6 +58,19 @@ class AnswerAccumulatorTests: XCTestCase {
 //        XCTAssertEqual(score, 8 + 5)
 //    }
     
+    func test_scoreMultipleProblems() throws {
+        
+        let entry1 = WeightedEntry(weight: 8, problems: ["P1","P2"], desires: [], killerFeatures: [])
+        let entry2 = WeightedEntry(weight: 5, problems: ["P2","P3"], desires: [], killerFeatures: [])
+        
+        sut.accumulate(entry: entry1)
+        sut.accumulate(entry: entry2)
+        
+        let score: Int = sut.scoreProblem(problem: "P2")
+        
+        XCTAssertEqual(score, 8 + 5)
+    }
+    
     func test_scoreMultipleDesires() throws {
         
         let entry1 = WeightedEntry(weight: 8, problems: [], desires: ["D1","D2"], killerFeatures: [])
@@ -82,6 +95,20 @@ class AnswerAccumulatorTests: XCTestCase {
         let score: Int = sut.scoreKillerFeature(killerFeature: "K2")
         
         XCTAssertEqual(score, 8 + 5)
+    }
+    
+    func test_accumulate_shouldGatherListOfUniqueProblems () throws {
+       
+        
+        let entry1 = WeightedEntry(weight: 8, problems: ["P1","P2"], desires: [], killerFeatures: [])
+        let entry2 = WeightedEntry(weight: 5, problems: ["P2","P3"], desires: [], killerFeatures: [])
+        
+        sut.accumulate(entry: entry1)
+        sut.accumulate(entry: entry2)
+        
+        
+        XCTAssertEqual(something.sorted() ,["P1", "P2" , "P3"].sorted() )
+        
     }
 
 }
