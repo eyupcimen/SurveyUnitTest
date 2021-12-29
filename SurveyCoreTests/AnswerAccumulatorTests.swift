@@ -99,15 +99,15 @@ class AnswerAccumulatorTests: XCTestCase {
     
     func test_accumulate_shouldGatherListOfUniqueProblems () throws {
        
-        
         let entry1 = WeightedEntry(weight: 8, problems: ["P1","P2"], desires: [], killerFeatures: [])
         let entry2 = WeightedEntry(weight: 5, problems: ["P2","P3"], desires: [], killerFeatures: [])
         
         sut.accumulate(entry: entry1)
         sut.accumulate(entry: entry2)
         
+        let result = sut.problems()
         
-        XCTAssertEqual(something.sorted() ,["P1", "P2" , "P3"].sorted() )
+        XCTAssertEqual(result ,["P1", "P2", "P3"])
         
     }
 

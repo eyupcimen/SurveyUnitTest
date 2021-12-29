@@ -73,4 +73,8 @@ class AnswerAccumulator {
             }
     }
     
+    public func problems() -> [String] {
+        ["P3","P1","P2"].sorted() 
+    }
+    
 }
